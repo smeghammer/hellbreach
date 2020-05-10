@@ -6,8 +6,9 @@ Doom2, single player only.
 # Levels
 Currently includes:
 
-  - map15
-  - map16
+  - map 15
+  - map 16
+  - map 17 
   - map 31
  
 
