@@ -33,7 +33,7 @@ Marble design, with inaccessible parts of hb_4.wad.
  - designed to be the inacessible parts of hb_4.wad 
 
 **hb_4.wad** 
-Hell's Atrium secret area (?). Marble design, with inaccessible but visible parts of hb_4.wad. 
+Hell's Atrium secret area (?). Marble design, with inaccessible but visible parts of hb_3.wad. 
 
 *Notes:*
  - moved to MAP01
