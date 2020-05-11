@@ -22,6 +22,9 @@ Currently includes:
 
 ## TODOs
 
+### MAP14:
+An intro to map 15 - city-style? use same textures as start of MAP15.
+
 ### MAP15:
  - sewer exit lift texture to metal
  - More spider demons? 
@@ -57,7 +60,7 @@ Currently includes:
  - cracks?
   - OK - use the red variation of the stone texture, fade into the far corner to the BFDoors.
   
-#hexen-style doors:
+####hexen-style doors:
  - type=12
  - SR
   - 0,16,150 (tag, speed, delay)
@@ -66,8 +69,16 @@ Currently includes:
  
  
 ### MAP17
+ - move current (unfinished) to MAP18(?)
+ 
+### MAP17 (new)
+Make a dark, lava-cracked descending cave coming from the end of Hells Canyon. Reveal a BIG FUCKING DOOR that is the entrance to Hell...
+
+### MAP18
+ - See above
  
 ### MAP31
  
  
 ### GITHUB!!!
+OK.
