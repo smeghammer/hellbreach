@@ -6,7 +6,7 @@ Doom2, single player only.
 # Levels
 Currently includes:
 
-  - map 15
+MAP15
   - map 16
   - map 17 
   - map 31
@@ -38,6 +38,8 @@ An intro to map 15 - city-style? use same textures as start of MAP15.
 ### MAP16
 
 #### canyon
+
+
 
 #### cave system
  - secret access from behind start secret
