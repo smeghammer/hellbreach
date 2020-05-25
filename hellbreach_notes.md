@@ -76,6 +76,21 @@ An intro to map 15 - city-style? use same textures as start of MAP15.
 ### MAP17 (new)
 Make a dark, lava-cracked descending cave coming from the end of Hells Canyon. Reveal a BIG FUCKING DOOR that is the entrance to Hell...
 
+linked door:
+control tag: 132
+door tags: 128
+
+
+	Sector_SetLink (193, 176, 0, 3);		//
+	Sector_SetLink (193, 191, 0, 3);		//Links lowering/rising   platform: Supply Storage
+	Sector_SetLink (193, 192, 0, 3);		//
+
+
+
+ - switch for red key cage also opens bars by bridge?
+ - switch somewhere that overlooks canyon that will open multiple doors on barrachs (to be designed). Yellow key in here, but releases shit-tonnes of monsters into the canyon...
+ - verticlaly stacked cacos etc in spiral stair space, and chaingunners etc placed ON stairs via Z co-ord (NOTE: relative to real floor not absolute grid z-coord)
+
 ### MAP18
  - See above
  
