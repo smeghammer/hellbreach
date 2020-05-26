@@ -90,6 +90,15 @@ door tags: 128
  - switch for red key cage also opens bars by bridge?
  - switch somewhere that overlooks canyon that will open multiple doors on barrachs (to be designed). Yellow key in here, but releases shit-tonnes of monsters into the canyon...
  - verticlaly stacked cacos etc in spiral stair space, and chaingunners etc placed ON stairs via Z co-ord (NOTE: relative to real floor not absolute grid z-coord)
+ 
+** Final area:** 
+Jutting out iron thing...
+cut out:
+1 - floor: -1280, ceil: -1190(work out)
+2 - floor: -1472, ceil: -1190(work out)
+ 
+ 
+ 
 
 ### MAP18
  - See above
