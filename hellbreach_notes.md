@@ -69,6 +69,10 @@ An intro to map 15 - city-style? use same textures as start of MAP15.
  
  -784, -688 + 288 = -496,-400
  
+crossing for iron cage:
+ - fake floor:  -1192
+ -fake ceiling: -1200
+ 
  
 ### MAP17
  - move current (unfinished) to MAP18(?)
@@ -97,9 +101,34 @@ cut out:
 1 - floor: -1280, ceil: -1190(work out)
 2 - floor: -1472, ceil: -1190(work out)
  
- 
- 
+ canyon:
+ - check/adjust cave heights
 
+**skull key sequence**
+
+It doesn't matter which order you do it - getting one is not dependent on getting another beforehand.
+W
+ - move yellow key to be visible in iron box thingie
+ *first key:*
+ **RED (-4960, 1500 )** 
+  - entrance at -4080,2560 OR -3625, 2100
+  - protected by BoH
+  - switch (-4050, 1500) opens cage around red key and drops bars at -3560, 1560
+ **BLUE (-1880,1130 )**
+ [need switch to OPEN door and switch to lower bars (TODO)] 
+  - add bars at  -2890, -525 - Need switch for these
+   - change door at -2050, 860 to switch. TODO: Need switc for this as well (inside)HK room at -2100, -500 
+      - new room and switch at -2650, 640 (TODO)
+ **YELLOW (in iron box)**
+  - needs to be VISIBLE form above
+  - bars on far side of bridge open from obscured passageway opposite
+     - move soul sphere to somewhere else, remove some of the bars, make sure you can SEE the bars from here (possibly light them better?)
+      
+ ARSE! I can get into the yellow key iron box by going IN to the tunnel at -1200,-500: Resolve by adding bars here that are flagged as 138 as well
+  - STEPS to get back up to start area so you can do the yellow switch if missed!!
+  - yello key big arse door does not open at all!
+  - align wall textures whjere iron wall is breaking
+ 
 ### MAP18
  - See above
  
