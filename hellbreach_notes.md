@@ -95,6 +95,15 @@ door tags: 128
  - switch somewhere that overlooks canyon that will open multiple doors on barrachs (to be designed). Yellow key in here, but releases shit-tonnes of monsters into the canyon...
  - verticlaly stacked cacos etc in spiral stair space, and chaingunners etc placed ON stairs via Z co-ord (NOTE: relative to real floor not absolute grid z-coord)
  
+ Single-trigger script!!
+  - need to trigger a lowering ONCE if there are multiple linedefs calling the same thing:
+  - need to have a boolean triggered=true/false and only action if actioned=false, otherwise do nothing...
+  
+  
+  
+ 
+ 
+ 
 ** Final area:** 
 Jutting out iron thing...
 cut out:
