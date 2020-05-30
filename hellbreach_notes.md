@@ -137,6 +137,12 @@ W
   - STEPS to get back up to start area so you can do the yellow switch if missed!!
   - yello key big arse door does not open at all!
   - align wall textures whjere iron wall is breaking
+
+ - found sector that blocked in one of the caves
+ - add better directions to various caves - some are quite difficult to see.
+ - adjust light levels?
+ - add many more monsters
+ 	- use monster traps with dribble feed (1-at-a-time)
  
 ### MAP18
  - See above
@@ -146,3 +152,5 @@ W
  
 ### GITHUB!!!
 OK.
+
+
