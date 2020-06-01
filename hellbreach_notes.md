@@ -143,6 +143,23 @@ W
  - adjust light levels?
  - add many more monsters
  	- use monster traps with dribble feed (1-at-a-time)
+ 	
+  - adjust monster balance?
+  - PLAYTEST!!!
+  
+  block exit from iron box!!
+  
+ - stuck mancubus at lower middle cave
+ - light levels on cave exit
+ - complete floor wrincles here too!
+ - more ammo 
+ - additional weapons (SSG, RL)
+ more MONSTERSjust generally hiding in caves etc.
+ - more in final exit
+ - link exitr domes to killing the barons?
+     - TID=101
+     - 2616, 2617, 32
+ - move initial SG to round the corner
  
 ### MAP18
  - See above
