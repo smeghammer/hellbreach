@@ -154,15 +154,27 @@ W
  - complete floor wrincles here too!
  - more ammo 
  - additional weapons (SSG, RL)
- more MONSTERSjust generally hiding in caves etc.
- - more in final exit
+ more MONSTERS just generally hiding in caves etc.
+ - more in final exit - DONE(?)
  - link exitr domes to killing the barons?
      - TID=101
-     - 2616, 2617, 32
- - move initial SG to round the corner
+     - 2616, 2617, 32 - DONE
+ - move initial SG to round the corner - DONE
+ - SSG in first cave as secret!
+  - mancubus in canyon is stuck!
+   - make  ledge caches secrets
+   - hide something behind top switch
+   - add more health to all dead marines
+    	- definitely for UV as I played on HMP
+    	- ammo balance?
+    	
  
 ### MAP18
- - See above
+marble Hell motif. 
+ - dangling corpses behind grate in a call recess
+ - drains as per other drains in map31
+ - fiddly-ass square lighting like 31
+ - CARE with aligning marble...
  
 ### MAP31
  
