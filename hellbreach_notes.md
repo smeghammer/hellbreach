@@ -73,11 +73,9 @@ crossing for iron cage:
  - fake floor:  -1192
  -fake ceiling: -1200
  
+
  
 ### MAP17
- - move current (unfinished) to MAP18(?)
- 
-### MAP17 (new)
 Make a dark, lava-cracked descending cave coming from the end of Hells Canyon. Reveal a BIG FUCKING DOOR that is the entrance to Hell...
 
 linked door:
@@ -116,8 +114,8 @@ cut out:
 **skull key sequence**
 
 It doesn't matter which order you do it - getting one is not dependent on getting another beforehand.
-W
- - move yellow key to be visible in iron box thingie
+
+~~ - move yellow key to be visible in iron box thingie~~
  *first key:*
  **RED (-4960, 1500 )** 
   - entrance at -4080,2560 OR -3625, 2100
@@ -147,34 +145,41 @@ W
   - adjust monster balance?
   - PLAYTEST!!!
   
-  block exit from iron box!!
+~~  block exit from iron box!!~~
   
  - stuck mancubus at lower middle cave
  - light levels on cave exit
- - complete floor wrincles here too!
+~~ - complete floor wrincles here too!~~
  - more ammo 
- - additional weapons (SSG, RL)
+ - additional weapons (SSG, RL, CS)
  more MONSTERS just generally hiding in caves etc.
  - more in final exit - DONE(?)
- - link exitr domes to killing the barons?
-     - TID=101
-     - 2616, 2617, 32 - DONE
- - move initial SG to round the corner - DONE
- - SSG in first cave as secret!
+~~ - link exitr domes to killing the barons?~~
+~~     - TID=101~~
+~~     - 2616, 2617, 32 - DONE~~
+~~ - move initial SG to round the corner - DONE~~
+~~ - SSG in first cave as secret!~~
   - mancubus in canyon is stuck!
-   - make  ledge caches secrets
-   - hide something behind top switch
-   - add more health to all dead marines
+~~   - make  ledge caches secrets~~
+~~   - hide something behind top switch~~
+~~   - add more health to all dead marines~~
     	- definitely for UV as I played on HMP
     	- ammo balance?
     	
+~~ - line up textures in iron box corridor~~
+~~ - take off one secret sector in broken lift shapft~~
  
 ### MAP18
 marble Hell motif. 
- - dangling corpses behind grate in a call recess
+ - dangling corpses behind grate in a hall recess
  - drains as per other drains in map31
  - fiddly-ass square lighting like 31
  - CARE with aligning marble...
+ 
+  - door prefabs:
+      136, 228
+      dem5_1
+      
  
 ### MAP31
  
