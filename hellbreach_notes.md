@@ -180,6 +180,10 @@ marble Hell motif.
       136, 228
       dem5_1
       
+      sort of hub thingie.
+
+**BUG:      **
+The teleportdest fails if Bruital Doom is used. The player ends up on the floor. See https://www.doomworld.com/forum/topic/115124-teleportdest23-and-brutal-doom/
  
 ### MAP31
  
