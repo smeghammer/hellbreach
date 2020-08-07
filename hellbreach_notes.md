@@ -191,4 +191,4 @@ The teleportdest fails if Bruital Doom is used. The player ends up on the floor.
 ### GITHUB!!!
 OK.
 
-
+MAP18 - need to ensure the teleporters DO NOT close if the button is not pressed! Or, prevent return if button not pressed. Currently, if you return without pressing a switch, the tele still closes. Could I trigger the gate from the switch script instead?
