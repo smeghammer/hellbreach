@@ -192,3 +192,13 @@ The teleportdest fails if Bruital Doom is used. The player ends up on the floor.
 OK.
 
 MAP18 - need to ensure the teleporters DO NOT close if the button is not pressed! Or, prevent return if button not pressed. Currently, if you return without pressing a switch, the tele still closes. Could I trigger the gate from the switch script instead?
+
+
+66, 70, 74, 65,69, 73, 64, 68
+
+1, 2, 0, 4, 5, 6, 7, 8, 9, 10, 11
+
+ - Allow escape from broken pit?
+ - make it so I can always get the blue key?
+ - if secret area done, kill monsters in level 18 equivalent area?
+ - add code to allow the player to navigate under the cence in the broken pit?
