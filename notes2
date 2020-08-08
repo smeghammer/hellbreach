@@ -1,0 +1,303 @@
+episode MAP15
+{
+	name="Hellbreach"
+}
+
+map MAP15 "Breach containment"
+{
+	levelnum=15
+	sky1 = "SKY1"
+	next="MAP16"
+	secretnext="MAP31"
+	music="D_DEAD"
+}
+
+map MAP16 "Breach scars"
+{
+	levelnum=16
+	next="MAP17"
+	secretnext="MAP31"
+	sky1 = "SKY1"
+	music="D_DDTBLU"
+}
+
+map MAP17 "The Gate"
+{
+	levelnum=17
+	next="MAP18"
+	secretnext="MAP31"
+	sky1 = "SKY1"
+	music="D_DDTBL2"
+}
+
+map MAP18 "Hell's Atrium"
+{
+	levelnum=18
+	next="MAP19"
+	secretnext="MAP31"
+	sky1 = "CLUDSKY2"
+	music="D_DDTBLU"
+	OldFallingDamage
+}
+
+map MAP31 "Hells Atrium - Requiem"
+{
+	levelnum=31
+	next="MAP16"
+	secretnext="MAP32"
+	sky1 = "CLUDSKY2"
+	music="D_MESSAG"
+}
+
+
+
+
+#include "zcommon.acs"
+
+#define TELEPORT_ARRAY_LENGTH 12
+int randomIndexAssigned[12] = {0,0,0,0,0,0,0,0,0,0,0,0};	//store the teleTargetSector ID index as they are chosen 
+
+//int telePlatforms[12] = {63,64,65,66,67,68,69,70,71,72,73,74};	//sector tags of departure platfoms
+//int randomTelePlatforms[12] = {0,0,0,0,0,0,0,0,0,0,0,0};	//store the telePlatforms item at the randomised index ID index as they are chosen 
+
+int _currentPlatformToLower = -1;
+
+/* 
+Print a message on finding each exit switch:
+These will be used in the finding order.
+ */
+str switchFindMsg[12] = {
+	"OK, let's find the others...",
+	"Right, that's 2",
+	"And the third",
+	"How many of these damn things are there?",
+	"Is that five now?",
+	"What kind of gate IS this?",
+	"Thats seven, I think",
+	"And eight",
+	"Nine. Should be nearly done now",
+	"Ten? How many of those damn pyramids were there?",
+	"Eleven. I think just one more to go.",
+	"That damn exit should be open now!"
+};
+
+/*
+The sector tags of teleport targets from main hub area:
+*/
+int teleTargetSectors[12] = {1,2,37,4,5,6,7,8,9,10,11,12};
+
+/*
+The sector tags of the lights in the exit area. 
+*/
+int exitLights[12] = {47,48,49,50,51,52,53,54,55,56,57,58};
+
+/*
+runtime tracker for tally of completed sections:
+*/
+int exitTasksCompleted[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+
+/*
+boolean indicating whether all tasks are done (may be redundent):
+*/
+bool openExit = false;
+
+
+script 1 ENTER {
+	/* start wind sound at well of dead souls */
+	startWindSound(20);
+	randomizeTeleportDestinations();
+	
+	/* rotate the demon floor textures to align with corridor*/
+	rotateTextures(37, 270, 0);
+	
+	/* init  */
+	_currentPlatformToLower = 0;	//this is set dynamically in script 2
+}
+
+/*
+Triggered by walking over a linedef at the top of the pyramids. Each linedef cross passes an argument 0 to 11 (depending on which  
+pyramid) and this is then used as the index of the randomized target array 'randomIndexAssigned' set up in the ENTER script
+*/
+script 2 (int target,int source){
+	log(s:"TELEPORTING OUT: script 2: plat to lower:");
+	log(i:source);
+	_currentPlatformToLower = source;	//now we can use this on clicking the buttons!
+	Teleport(0,randomIndexAssigned[target],0);
+}
+
+/****
+EXIT LIGHT HANDLING:
+--------------------
+Handler script for each segment button. This in turn will switch the 
+exit lights on and increment the switched count. 0 to 11, used as index
+for  setExitSegmentDone exitLights array.
+When we get here we have already set the transient sector tag of our departure platform,
+so we can use it in the floor lower call:
+*/
+script 3 (int exitLightIndex){
+	log(s:"CLICKING TRIGGER\nLight Index:");
+	log(i:exitLightIndex);
+	setExitSegmentDone(exitLightIndex);
+	
+	/* also set any area-specific things: */
+	switch(exitLightIndex){
+		case 0:
+			log(s:"Spawn demons in the arenas...");
+			spawnStuff(0);	//use the arg to determine which area we are spawning into (if I use elsewhere)
+		break;
+	
+		case 1:	//floating switch. Need to set the CONTROL SECTOR texture to switched:
+			SetLineTexture(1,SIDE_FRONT, TEXTURE_MIDDLE,"SW2MET2");
+		break;
+		case 2:
+			Door_Open(38,12,0);
+		break;
+	}
+	log(s:"Now we lower the platform. Platform tag:");
+	log(i:_currentPlatformToLower);
+	/* we have activated the switch - raise the departure platform by tag stored in _currentPlatformToLower */
+	Floor_RaiseByValue(_currentPlatformToLower, 12, 56);
+	
+}
+
+
+/* TEST teleport to fake floor */
+script 5 (void){
+	Teleport(10,0,0);
+}
+
+/*
+handler for other triggered stuff per area:
+*/
+script 6 (int areaIndex){
+	if(exitTasksCompleted[areaIndex]){	//1 is truthy
+		switch(areaIndex){
+			case 0:
+				/*
+				spawn a BoH as you go past the hall intersection
+				*/
+				Spawn("BaronOfHell",	-1408<<16,	-2176<<16,	144<<16,0,64);
+				Spawn("Fatso",			-864<<16,	-2496<<16,	144<<16,0,64);
+				Spawn("Hellknight",		-1856<<16,	-2144<<16,	144<<16,0,64);
+			break;
+		}
+	}
+}
+
+/*
+start localised wind sound at specified thing(s) tag:
+*/
+function void startWindSound(int thingID){
+	PlaySound ( thingID, "WINDHOWL", 0, 0.5, true, ATTN_NORM);
+}
+
+/* rotation is clockwise in degrees */
+function void rotateTextures(int sectorId, int floorAngle, int ceilingAngle){
+	Sector_SetRotation(sectorId, floorAngle, ceilingAngle);
+}
+
+/* 
+This randomizes the teleport hub targets, so each new playthrough has different teleport destinations linked to the pyramids. The
+assigned targets persist over saves though.
+Also need to mirror this randomization for the departur platforms as well.
+*/
+function void randomizeTeleportDestinations(void){
+	//int teleTargetSectors[12] = {1,2,37,4,5,6,7,8,9,10,11,12};
+	int assigned = 0;
+	
+	/* iterate over sector ID array. I need an array length */
+	for (int a = 0;a < TELEPORT_ARRAY_LENGTH; a++){
+		int entryDone = 0;
+		while(!(entryDone)){
+			/* 	if it is not already in place, proceed to get it. So we need to get a RANDOM index of the input and put it at the CURRENT index of the output: */
+			int rnd = Random(0,11);
+			
+			/* test if this random index has been used already: */
+			if(!(randomIndexAssigned[rnd])){
+				/* if it has not, assign it to the target sector randomized ordr array and exit the entryDone loop: */
+				randomIndexAssigned[rnd] = teleTargetSectors[a];
+				// randomTelePlatforms[rnd] = telePlatforms[a]; ?
+				entryDone = 1;
+			}
+		}
+ 	}
+}
+
+/* 
+key these to the INDEX of the platform being done 
+Triggered on actioning the switches in each segment.
+When all are done, the exit itself will lower/open
+Logic:
+ - each switch is S1
+ - each passes a unique index number
+ - on passing the index number, the exitTasksCompleted array is updated
+*/
+function void setExitSegmentDone(int exitLightIndex){
+	/* flag the array index as true. The switches are S1, so this is probably redundant:  */
+	exitTasksCompleted[exitLightIndex] = 1;
+	
+	log(i:exitLightIndex);
+	log(i:exitLights[exitLightIndex]);
+	
+	
+	/* and now perform the action to set the activated light to max brightness: */
+	Light_ChangeToValue(exitLights[exitLightIndex],255);
+	
+	/* finally, check whether ALL lights are on. If so,  open the exit... */
+	openExit = true;
+	int numFound = -1;	//start at -1 because zero-indexed.
+	for(int n=0; n<TELEPORT_ARRAY_LENGTH; n++){
+		if(!exitTasksCompleted[n] == 0){
+			openExit = false;
+			numFound++;
+		}
+	}
+	log(s:"Number of switches currently found:");
+	log(i:numFound);
+	print(s:switchFindMsg[numFound]);
+	
+	if(openExit){
+		log(s:"Open exit...");
+	};
+}
+
+/* 
+'areaNum' is an arbitrary integer identifying each main area. It is not a sector tag as such, just an index.
+Therefore, I can use it to key an array of spawn data (not sure whether this will work though).
+*/
+function void spawnStuff(int areaNum){
+	switch(areaNum){
+		case 0:
+			log(s:"Spawning for area 0");
+			int start[3] = {0, -3072, 144};
+			int dim[2] = {5,5};	//cols, rows
+	
+			int counter = 7;
+			int x_pos = -1;
+			int y_pos = -1;
+			int y_start = 0;
+			
+			//x
+			for(int a=0; a< dim[0]; a++){
+				x_pos = start[0] + (a*128);
+				log(s:"row:",i:a,s:"x-pos", i:x_pos);
+				//y
+				for(int b=0; b<dim[1]; b++){
+					y_pos = start[1] + (b*128);
+					log(s:"col: ", i:b, s:"y-pos: ",i:y_pos);
+					Spawn("DoomImp",		x_pos<<16,		y_pos<<16,	start[2]<<16,0,64);
+					Spawn("ShotgunGuy",		(x_pos+64)<<16,	y_pos<<16,	start[2]<<16,0,64);
+				}
+			}
+		break;
+		
+		
+		default:
+			log(s:"no action");
+	}
+}
+
+
+
+
+
