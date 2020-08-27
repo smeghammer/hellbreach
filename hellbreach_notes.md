@@ -202,3 +202,9 @@ MAP18 - need to ensure the teleporters DO NOT close if the button is not pressed
  - make it so I can always get the blue key?
  - if secret area done, kill monsters in level 18 equivalent area?
  - add code to allow the player to navigate under the cence in the broken pit?
+
+
+21/08/2020:
+-----------
+For 3D teleport (perhaps?) check this:
+https://zdoom.org/wiki/MAPINFO/Map_definition#UsePlayerStartZ
