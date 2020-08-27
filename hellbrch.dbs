@@ -17,24 +17,9 @@ maps
 		{
 		}
 		overrideceiltexture = false;
-		viewpositionx = 2908f;
+		viewpositionx = -613.2041f;
 		defaulttoptexture = "MARBLE3";
 		overrideceilheight = false;
-		
-		scriptdocuments
-		{
-			
-			document0
-			{
-				filename = "SCRIPTS";
-				hash = 3469170009;
-				resource;
-				tabtype = 0;
-				scripttype = 1;
-				firstvisibleline = 124;
-				activetab = true;
-			}
-		}
 		useresourcesinreadonlymode = false;
 		overridebrightness = false;
 		overridefloortexture = false;
@@ -48,19 +33,94 @@ maps
 			gridrotate = 0f;
 			backscalex = 100;
 			gridoriginx = 0f;
-			gridsize = 256f;
+			gridsize = 16f;
 			background = "";
 			backoffsety = 0;
 		}
 		overridebottomtexture = false;
 		defaultbottomtexture = "MARBLE3";
 		defaultfloortexture = "DEM1_6";
-		viewpositiony = 260f;
+		viewpositiony = -1192.221f;
 		defaultwalltexture = "MARBLE3";
 		overridetoptexture = false;
 		customceilheight = 128;
 		overridemiddletexture = false;
 		custombrightness = 196;
-		viewscale = 0.2200168f;
+		viewscale = 3.033117f;
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 4995;
+				firstvisibleline = 142;
+				activetab = true;
+			}
+		}
+	}
+	
+	MAP31
+	{
+		defaultceiltexture = "F_SKY1";
+		overridefloorheight = false;
+		customfloorheight = 0;
+		uselongtexturenames = false;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+		}
+		overrideceiltexture = false;
+		viewpositionx = -72.25375f;
+		defaulttoptexture = "MARBLE1";
+		overrideceilheight = false;
+		useresourcesinreadonlymode = false;
+		overridebrightness = false;
+		overridefloortexture = false;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0f;
+			backscaley = 100;
+			gridrotate = 0f;
+			backscalex = 100;
+			gridoriginx = 0f;
+			gridsize = 64f;
+			background = "";
+			backoffsety = 0;
+		}
+		overridebottomtexture = false;
+		defaultbottomtexture = "MARBLE1";
+		defaultfloortexture = "FLOOR6_1";
+		viewpositiony = -2359.315f;
+		defaultwalltexture = "MARBLE1";
+		overridetoptexture = false;
+		customceilheight = 128;
+		overridemiddletexture = false;
+		custombrightness = 196;
+		viewscale = 0.7491993f;
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 906;
+				activetab = true;
+			}
+		}
 	}
 }
