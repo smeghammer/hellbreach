@@ -17,7 +17,7 @@ maps
 		{
 		}
 		overrideceiltexture = false;
-		viewpositionx = -613.2041f;
+		viewpositionx = 2783.699f;
 		defaulttoptexture = "MARBLE3";
 		overrideceilheight = false;
 		useresourcesinreadonlymode = false;
@@ -33,20 +33,20 @@ maps
 			gridrotate = 0f;
 			backscalex = 100;
 			gridoriginx = 0f;
-			gridsize = 16f;
+			gridsize = 256f;
 			background = "";
 			backoffsety = 0;
 		}
 		overridebottomtexture = false;
 		defaultbottomtexture = "MARBLE3";
 		defaultfloortexture = "DEM1_6";
-		viewpositiony = -1192.221f;
+		viewpositiony = 311.624f;
 		defaultwalltexture = "MARBLE3";
 		overridetoptexture = false;
 		customceilheight = 128;
 		overridemiddletexture = false;
 		custombrightness = 196;
-		viewscale = 3.033117f;
+		viewscale = 0.2200167f;
 		
 		scriptdocuments
 		{
@@ -58,7 +58,7 @@ maps
 				resource;
 				tabtype = 0;
 				scripttype = 1;
-				caretposition = 4995;
+				caretposition = 5042;
 				firstvisibleline = 142;
 				activetab = true;
 			}
