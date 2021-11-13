@@ -1,0 +1,75 @@
+type = "Doom Builder Map Settings Configuration";
+gameconfig = "GZDoom_DoomHexen.cfg";
+strictpatches = 0;
+
+maps
+{
+	
+	MAP01
+	{
+		defaultceiltexture = "RROCK11";
+		overridefloorheight = false;
+		customfloorheight = 0;
+		uselongtexturenames = false;
+		scriptcompiler = "zdoom_acs.cfg";
+		
+		resources
+		{
+		}
+		overrideceiltexture = false;
+		viewpositionx = -3752f;
+		defaulttoptexture = "STONE6";
+		overrideceilheight = false;
+		useresourcesinreadonlymode = false;
+		overridebrightness = false;
+		overridefloortexture = false;
+		
+		grid
+		{
+			backoffsetx = 0;
+			backsource = 0;
+			gridoriginy = 0f;
+			backscaley = 100;
+			gridrotate = 0f;
+			backscalex = 100;
+			gridoriginx = 0f;
+			gridsize = 256f;
+			background = "";
+			backoffsety = 0;
+		}
+		overridebottomtexture = false;
+		defaultbottomtexture = "STONE6";
+		defaultfloortexture = "MFLR8_2";
+		viewpositiony = -452f;
+		defaultwalltexture = "STONE6";
+		overridetoptexture = false;
+		customceilheight = 128;
+		overridemiddletexture = false;
+		custombrightness = 196;
+		viewscale = 0.1309207f;
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 24;
+				activetab = true;
+			}
+			
+			document1
+			{
+				filename = "C:\\Games\\Doom\\WADs\\my_wads\\hellbreach\\PK3\\root\\maps\\map16.wad\\MAPINFO";
+				hash = 1628161883;
+				resource = "C:\\Games\\Doom\\WADs\\my_wads\\hellbreach\\PK3\\root\\maps\\map16.wad";
+				tabtype = 1;
+				scripttype = 6;
+			}
+		}
+	}
+}
