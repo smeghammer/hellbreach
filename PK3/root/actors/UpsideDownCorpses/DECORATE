@@ -1,0 +1,49 @@
+Actor ZCorpseUpsideDown1 : ZCorpseLynched  15205
+{
+	States
+	{
+	Spawn:
+		UPSC A -1
+		Stop
+	}
+}
+
+Actor ZCorpseUpsideDown2 : ZCorpseLynchedNoHeart 15206
+{
+	States
+	{
+	Spawn:
+		UPSC B 140 A_SpawnItemEx("CorpseBloodDrip", 0, 0, 24, 0, 0, 0, 0, SXF_CLIENTSIDE, 192)
+		Loop
+	}
+}
+
+Actor ZCorpseUpsideDown3 : ZCorpseLynchedNoHeart 15207
+{
+	States
+	{
+	Spawn:
+		UPSC C 140 A_SpawnItemEx("CorpseBloodDrip", 0, 0, 24, 0, 0, 0, 0, SXF_CLIENTSIDE, 192)
+		Loop
+	}
+}
+
+Actor ZCorpseUpsideDown4 : ZCorpseLynched 15208
+{
+	States
+	{
+	Spawn:
+		UPSC D -1
+		Stop
+	}
+}
+
+Actor ZCorpseUpsideDown5 : ZCorpseLynchedNoHeart 15209
+{
+	States
+	{
+	Spawn:
+		UPSC E 140 A_SpawnItemEx("CorpseBloodDrip", 0, 0, 20, 0, 0, 0, 0, SXF_CLIENTSIDE, 192)
+		Loop
+	}
+}

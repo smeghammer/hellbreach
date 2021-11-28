@@ -1,1 +1,6 @@
 #include "Actors/CyberImp/DECORATE"
+#include "Actors/ImpaledCorpses/DECORATE"
+#include "Actors/UpsideDownCorpses/DECORATE"
+#include "Actors/Flesh/DECORATE"
+#include "Actors/FlamerBaron/DECORATE"
+#include "Actors/Flames/DECORATE.txt"
