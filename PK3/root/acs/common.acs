@@ -78,9 +78,10 @@ bool openExit = false;
 script 100 ENTER{
 	CURRENTLEVEL = GetLevelInfo(LEVELINFO_LEVELNUM);
 	//log(i:GetLevelInfo(LEVELINFO_LEVELNUM));
-	log(s:"starting script file 'common' ",i:CURRENTLEVEL);
+	log(s:"starting external script file 'common' ",i:CURRENTLEVEL);
 	if(CURRENTLEVEL == 15){
 		//do nothing
+		log(s:"Starting MAP15");
 	}
 	if(CURRENTLEVEL == 16){
 		//do nothing
@@ -160,6 +161,13 @@ script 100 ENTER{
 		log(s:"All dead Dave.");
 	}
 }
+
+/* call lower floor/ceiling function (slow) */
+script 1 (int sectorID, int dist, int planesToMove){
+	log(s:"calling floorAndCeilingLowerByValue");
+	floorAndCeilingLowerByValue(sectorID, 16, dist,  planesToMove);
+}
+
 
 script 2 (int target,int source){
 	log(s:"triggering script 2");
@@ -365,6 +373,29 @@ function void changeSectorHeight(int sectorID, int speed, int dist, int planesTo
 		case SECTOR_MVFLOORANDCEILING:
 			log(s:"lowering floor and raising ceiling");
 			ceiling_raisebyvalue(sectorID, speed, dist);
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		default:
+			//do nothing
+	}
+}
+
+function void floorAndCeilingLowerByValue(int sectorID, int speed, int dist, int planesToMove){
+	switch(planesToMove){
+		case SECTOR_MVFLOOR:
+			log(s:"lowering floor");
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVCEILING:
+			log(s:"lowering ceiling");
+			ceiling_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVFLOORANDCEILING:
+			log(s:"lowering floor and ceiling");
+			ceiling_lowerbyvalue(sectorID, speed, dist);
 			floor_lowerbyvalue(sectorID, speed, dist);
 		break;
 		
