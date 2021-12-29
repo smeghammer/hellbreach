@@ -34,6 +34,9 @@ texturegroup - "OTHER"
 
 texture h METAL8
 texture h METAL9
+texture h METAL10
+texture h METAL11
+texture h METPOIS
 texture h WOODMET6
 texture h WOODMET7
 texture t BRNSMARC
@@ -43,6 +46,7 @@ texture t BRNSMARC
 texture t BRNBIGC
 texture t BRNBIGR
 texture t BRNBIGL
+texture t DOORWITE
 
 texture t BRNBIGRC
 texture t BRNBIGRR

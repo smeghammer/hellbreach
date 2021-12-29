@@ -26,6 +26,7 @@ Actor CustomFire
 
 Actor FireSml 10001
 {
+  +NoGravity
   Height 40
   Radius 30
   SpawnId 10001

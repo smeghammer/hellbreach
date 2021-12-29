@@ -82,6 +82,7 @@ script 100 ENTER{
 	if(CURRENTLEVEL == 15){
 		//do nothing
 		log(s:"Starting MAP15");
+		alignSectorCeilings(66,0,16);
 	}
 	if(CURRENTLEVEL == 16){
 		//do nothing
@@ -331,6 +332,17 @@ script 7(void){
 			floor_lowerbyvalue(83, 12, 8);
 		}
 	}
+}
+
+
+function void alignSectorFloors(int sectorId,int offsetX, int offsetY){
+	/* align ceiling lights in small corridor: */
+	Sector_SetFloorPanning(sectorId,offsetX, 0, offsetY, 0);
+}
+
+function void alignSectorCeilings(int sectorId,int offsetX, int offsetY){
+	/* align ceiling lights in small corridor: */
+	Sector_SetCeilingPanning(sectorId,offsetX, 0, offsetY, 0);
 }
 
 /*

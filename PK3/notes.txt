@@ -1,2 +1,24 @@
 11	s1	43	12	0
 80	s1	1	0	39	120	3
+
+ - move cactus in start area!
+ - make doors fast!
+
+map 1:
+------
+
+progression:
+
+Start area
+----------
+ - Make sure BLUE key is visible
+ - way is barred...
+ - round back to activate bars at -2880,160
+ - open door at -1440,-96 with switch at -1648,-32
+ 
+
+
+Need to get into rear corridor top trigger the blue key barrier switch
+
+
+
