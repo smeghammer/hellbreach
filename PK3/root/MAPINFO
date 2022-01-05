@@ -1,9 +1,9 @@
 episode MAP15
 {
-	name="Hellbreach"
+	name="Hellbreach v2"
 }
 
-map MAP15 "Breach containment"
+map MAP15 "Breach Containment"
 {
 	levelnum=15
 	sky1 = "SKY1"
