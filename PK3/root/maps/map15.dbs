@@ -7,7 +7,7 @@ maps
 	
 	MAP01
 	{
-		defaultceiltexture = "FLAT1";
+		defaultceiltexture = "SLIME14";
 		overridefloorheight = false;
 		customfloorheight = 0;
 		uselongtexturenames = false;
@@ -18,7 +18,7 @@ maps
 		}
 		overrideceiltexture = false;
 		viewpositionx = 224f;
-		defaulttoptexture = "BRNSMALR";
+		defaulttoptexture = "BRNSMALL";
 		overrideceilheight = false;
 		useresourcesinreadonlymode = false;
 		overridebrightness = false;
@@ -28,20 +28,20 @@ maps
 		{
 			backoffsetx = 0;
 			backsource = 0;
-			gridoriginy = 0f;
+			gridoriginy = 0;
 			backscaley = 100;
-			gridrotate = 0f;
+			gridrotate = 0;
 			backscalex = 100;
-			gridoriginx = 0f;
-			gridsize = 256f;
+			gridoriginx = 0;
+			gridsize = 256;
 			background = "";
 			backoffsety = 0;
 		}
 		overridebottomtexture = false;
-		defaultbottomtexture = "BRNSMALR";
-		defaultfloortexture = "FLAT1";
+		defaultbottomtexture = "BRNSMALL";
+		defaultfloortexture = "FLOOR5_1";
 		viewpositiony = -840f;
-		defaultwalltexture = "BRNSMALR";
+		defaultwalltexture = "BRNSMALL";
 		overridetoptexture = false;
 		customceilheight = 128;
 		overridemiddletexture = false;
