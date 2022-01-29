@@ -15,10 +15,19 @@ maps
 		
 		resources
 		{
+			
+			resource0
+			{
+				type = 1;
+				location = "D:\\Games\\Doom\\WADs\\My_WADs\\hellbreach\\PK3\\root";
+				option1 = 0;
+				option2 = 0;
+				notfortesting = 0;
+			}
 		}
 		overrideceiltexture = false;
 		viewpositionx = 224f;
-		defaulttoptexture = "BRNSMALL";
+		defaulttoptexture = "BRNSMARL";
 		overrideceilheight = false;
 		useresourcesinreadonlymode = false;
 		overridebrightness = false;
@@ -38,10 +47,10 @@ maps
 			backoffsety = 0;
 		}
 		overridebottomtexture = false;
-		defaultbottomtexture = "BRNSMALL";
+		defaultbottomtexture = "BRNSMARL";
 		defaultfloortexture = "FLOOR5_1";
 		viewpositiony = -840f;
-		defaultwalltexture = "BRNSMALL";
+		defaultwalltexture = "BRNSMARL";
 		overridetoptexture = false;
 		customceilheight = 128;
 		overridemiddletexture = false;
@@ -61,6 +70,34 @@ maps
 				caretposition = 38;
 				activetab = true;
 			}
+		}
+		
+		reloadresourceprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		reloadresourcepostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		testprecommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
+		}
+		
+		testpostcommand
+		{
+			autocloseonsuccess = true;
+			exitcodeiserror = true;
+			stderriserror = true;
 		}
 	}
 }
