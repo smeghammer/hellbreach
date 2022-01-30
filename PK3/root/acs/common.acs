@@ -334,6 +334,10 @@ script 7(void){
 	}
 }
 
+/* lower platform */
+script 8 (int tag,int dist){
+	Floor_LowerByValue(tag,12,dist*8);
+}
 
 function void alignSectorFloors(int sectorId,int offsetX, int offsetY){
 	/* align ceiling lights in small corridor: */
