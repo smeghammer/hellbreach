@@ -336,6 +336,7 @@ script 7(void){
 
 /* lower platform */
 script 8 (int tag,int dist){
+	log(s:"opening exit door");
 	Floor_LowerByValue(tag,12,dist*8);
 }
 

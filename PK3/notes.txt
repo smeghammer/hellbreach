@@ -59,3 +59,15 @@ bar to underground secrtet needs to lower more!
 last corridor room - switch for hell breach room door needs texture!!
 door frame light to max next door
 final door needs switch. From secret walkway???
+
+tele dest blocked by fence				OK
+more goodies guarded by cyberbaron and arachno		OK
+hide monster closet im automap				cannot...
+exit door!!!						OK
+wall inj last switch room needs allingning		OK
+walkway to BFG						OK
+slime at top of new pillar				OK
+prickle in pathway!					OK
+exit doortrak!!						OK
+make exit darker					ok
+stuck pain elemental
