@@ -1,0 +1,30 @@
+Hell's Terminus
+---------------
+
+Notes.
+
+Teleport sector logic:
+tags		tele thing	area
+----------------------------
+2			10			sky platform
+11			-			penta (12:00)
+6			-			penta
+8			-			penta
+7			-			penta
+10			-			penta
+3			-			pinkie garden
+5			-			dumbbell
+12			-			cyberslopes
+9			-			silo
+1			-			cracked room
+4			-			road to hell
+
+
+
+ - lowering doors need to be faster
+ - blue key needs to move? OK
+ - secret to teh spider mstermind arena
+ - text align on one of teleplats			OK
+ - make exit attartive to explore
+ - funky bars
+
