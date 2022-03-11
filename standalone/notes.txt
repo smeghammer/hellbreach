@@ -27,4 +27,8 @@ tags		tele thing	area
  - text align on one of teleplats			OK
  - make exit attartive to explore
  - funky bars
+ 
+ - midtex grey1 at upper East tower tunnel
+ - blue skull - remove keyflag from door at baron canyon
+ - also, pit is inescapable if fall in wrong side!!
 
