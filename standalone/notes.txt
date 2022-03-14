@@ -32,3 +32,22 @@ tags		tele thing	area
  - blue skull - remove keyflag from door at baron canyon
  - also, pit is inescapable if fall in wrong side!!
 
+
+TAGS:
+-----
+1-16
+
+19
+20
+
+22
+
+27
+
+37
+
+39-102
+
+104-108
+
+222-225
