@@ -51,3 +51,11 @@ TAGS:
 104-108
 
 222-225
+
+
+ - canyon - cant get out where mancubus is
+ - switch in library - needs textures!
+ - chainsaw only in sky marble room
+ - grey1 panel, top floor tower
+ - remove ACS debug logging!!
+ - align textures in sky room
