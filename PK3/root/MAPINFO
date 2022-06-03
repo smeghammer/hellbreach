@@ -1,7 +1,21 @@
 episode MAP15
 {
-	name="Hellbreach v2"
+	name="Breach Containment"
 }
+episode MAP16
+{
+	name="Breach Scars"
+}
+episode MAP17
+{
+	name="The Gate"
+}
+episode MAP18
+{
+	name="Hell's Atrium"
+}
+
+
 
 map MAP15 "Breach Containment"
 {
