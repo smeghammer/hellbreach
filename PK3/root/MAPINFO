@@ -17,7 +17,7 @@ map MAP16 "Breach scars"
 	levelnum=16
 	next="MAP17"
 	secretnext="MAP31"
-	sky1 = "SKY1"
+	sky1 = "DNESKY02"
 	music="D_DDTBLU"
 }
 
