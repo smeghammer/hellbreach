@@ -1,0 +1,65 @@
+episode MAP15
+{
+	name="Breach Containment"
+}
+episode MAP16
+{
+	name="Breach Scars"
+}
+episode MAP17
+{
+	name="The Gate"
+}
+episode MAP18
+{
+	name="Hell's Atrium"
+}
+
+
+
+map MAP15 "Breach Containment"
+{
+	levelnum=15
+	sky1 = "SKY1"
+	next="MAP16"
+	secretnext="MAP31"
+	music="D_DEAD"
+}
+
+map MAP16 "Breach scars"
+{
+	levelnum=16
+	next="MAP17"
+	secretnext="MAP31"
+	sky1 = "DNESKY02"
+	music="D_DDTBLU"
+}
+
+map MAP17 "The Gate"
+{
+	levelnum=17
+	next="MAP18"
+	secretnext="MAP31"
+	sky1 = "SKY1"
+	music="D_DDTBL2"
+}
+
+map MAP18 "Hell's Atrium"
+{
+	levelnum=18
+	next="MAP19"
+	secretnext="MAP31"
+	sky1 = "CLUDSKY2"
+	music="D_DDTBLU"
+	OldFallingDamage
+}
+
+map MAP31 "Hells Atrium - Requiem"
+{
+	levelnum=31
+	next="MAP16"
+	secretnext="MAP32"
+	sky1 = "CLUDSKY2"
+	music="D_MESSAG"
+}
+

@@ -1,0 +1,69 @@
+Actor ZCorpseImpaled1 15200
+{
+	+SOLID
+	Radius 8
+	Height 100
+
+	States
+	{
+	Spawn:
+		CPSI A -1
+		Stop
+	}
+}
+
+Actor ZCorpseImpaled2 15201
+{
+	+SOLID
+	Radius 8
+	Height 100
+
+	States
+	{
+	Spawn:
+		CPSI B -1
+		Stop
+	}
+}
+
+Actor ZCorpseImpaled3 15202
+{
+	+SOLID
+	Radius 8
+	Height 100
+
+	States
+	{
+	Spawn:
+		CPSI C -1
+		Stop
+	}
+}
+
+Actor ZCorpseImpaled4 15203
+{
+	+SOLID
+	Radius 8
+	Height 100
+
+	States
+	{
+	Spawn:
+		CPSI D -1
+		Stop
+	}
+}
+
+Actor ZCorpseImpaled5 15204
+{
+	+SOLID
+	Radius 8
+	Height 100
+
+	States
+	{
+	Spawn:
+		CPSI E -1
+		Stop
+	}
+}

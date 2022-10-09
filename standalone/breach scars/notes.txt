@@ -1,0 +1,73 @@
+11	s1	43	12	0
+80	s1	1	0	39	120	3
+
+ - move cactus in start area!
+ - make doors fast!
+
+map 1:
+------
+
+progression:
+
+Start area
+----------
+ - Make sure BLUE key is visible
+ - way is barred...
+ - round back to activate bars at -2880,160
+ - open door at -1440,-96 with switch at -1648,-32
+ 
+
+
+Need to get into rear corridor top trigger the blue key barrier switch
+
+ - i have yellow key twice!!
+ - move some crates further from wall in bottom corridor to better see the light on thekr faces
+ - doortrak on bottom corridor secret!
+ - things on upper [platform around breach
+- correct teh key (yellow skull not key!!)
+
+13:57 31/12/2021
+
+ - secret lift: Add delay before return
+ - fix doortrak bottom corridor
+ - add stuff to upper walkway in breach room
+ - speed up door. 
+ - add lights to dark corridors  
+ 
+2/1/2022
+ - remove yellow key from top room!
+ - blue switch needs to be key not skull!!
+ - make blue key more obvious!!!!
+ - make doors fast in nukage area
+ - back of origonal lift needs to be support2
+ - soulspheer corridor secret!
+ - need script to do blue key lift!
+
+TIDY:
+ - make escape from nukage into old exit door
+ - bonuses in start area?
+ - goodies in arachno area
+ - better lighting in demon area
+
+need to force the blue key area!!
+
+
+pinkie cage???
+bar to underground secrtet needs to lower more!
+
+
+last corridor room - switch for hell breach room door needs texture!!
+door frame light to max next door
+final door needs switch. From secret walkway???
+
+tele dest blocked by fence				OK
+more goodies guarded by cyberbaron and arachno		OK
+hide monster closet im automap				cannot...
+exit door!!!						OK
+wall inj last switch room needs allingning		OK
+walkway to BFG						OK
+slime at top of new pillar				OK
+prickle in pathway!					OK
+exit doortrak!!						OK
+make exit darker					ok
+stuck pain elemental

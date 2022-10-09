@@ -1,0 +1,530 @@
+#library "common.acs"
+#include "zcommon.acs"
+
+/* COMMON */
+world int 1:CURRENTLEVEL;
+
+/* MAP17: */
+#define SECTOR_MVFLOOR 1
+#define SECTOR_MVCEILING 2
+#define SECTOR_MVFLOORANDCEILING 3
+#define ENDBARONS 101
+#define NUMCAGES 3
+int cagetags[NUMCAGES] = {141, 142, 143};
+bool cagetriggered[NUMCAGES];
+
+/* MAP18, MAP31 */
+world int 2:lookupDeadThings[];
+
+/* MAP18 */
+/*
+Here, we are testing for a global array of TIDs of imps to kill.
+This defaults to empty, but if one or more imps are killed in the secret level,
+this array is populated with TIDs.
+
+If it is so populated, the killSecretThings() method is called and the global
+array used to kill off correspondsingly TID flagged imps in THIS map.
+*/
+
+#define TELEPORT_ARRAY_LENGTH 12
+int randomIndexAssigned[12] = {0,0,0,0,0,0,0,0,0,0,0,0};	//store the teleTargetSector ID index as they are chosen
+
+//int telePlatforms[12] = {63,64,65,66,67,68,69,70,71,72,73,74};	//sector tags of departure platfoms
+//int randomTelePlatforms[12] = {0,0,0,0,0,0,0,0,0,0,0,0};	//store the telePlatforms item at the randomised index ID index as they are chosen
+
+int _currentPlatformToLower = -1;
+
+
+/*
+Print a message on finding each exit switch:
+These will be used in the finding order.
+ */
+str switchFindMsg[12] = {
+	"OK, let's find the others...",
+	"Right, that's 2",
+	"And the third",
+	"How many of these damn things are there?",
+	"Is that five now?",
+	"What kind of gate IS this?",
+	"Thats seven, I think",
+	"And eight",
+	"Nine. Should be nearly done now",
+	"Ten? How many of those damn pyramids were there?",
+	"Eleven. I think just one more to go.",
+	"That damn exit should be open now!"
+};
+
+/*
+The sector tags of teleport targets from main hub area:
+*/
+int teleTargetSectors[12] = {1,2,37,4,5,6,7,8,9,10,11,12};
+
+/*
+The sector tags of the lights in the exit area.
+*/
+int exitLights[12] = {47,48,49,50,51,52,53,54,55,56,57,58};
+
+/*
+runtime tracker for tally of completed sections:
+*/
+int exitTasksCompleted[12] = {0,0,0,0,0,0,0,0,0,0,0,0};
+
+/*
+boolean indicating whether all tasks are done (may be redundent):
+*/
+bool openExit = false;
+
+
+script 100 ENTER{
+	CURRENTLEVEL = GetLevelInfo(LEVELINFO_LEVELNUM);
+	//log(i:GetLevelInfo(LEVELINFO_LEVELNUM));
+	log(s:"starting external script file 'common' ",i:CURRENTLEVEL);
+	if(CURRENTLEVEL == 15){
+		//do nothing
+		log(s:"Starting MAP15");
+		alignSectorCeilings(66,0,16);
+	}
+	if(CURRENTLEVEL == 16){
+		//do nothing
+	}
+	if(CURRENTLEVEL == 17){
+		startWindSound(10);
+	}
+	if(CURRENTLEVEL == 18){
+		/* start wind sound at well of dead souls */
+		startWindSound(20);
+		randomizeTeleportDestinations();
+
+		/* rotate the demon floor textures to align with corridor*/
+		rotateTextures(37, 270, 0);
+
+		/* init  */
+		_currentPlatformToLower = 0;	//this is set dynamically in script 2
+
+		log(s:"triggering kill script with world scope data");
+		killSecretThings();
+	}
+	if(CURRENTLEVEL == 31){
+		log(s:"starting script file #31");
+		
+			/*
+		kill corresponding monster in MAP18
+		See https://zdoom.org/wiki/Scope
+
+		 - We specify the TIDs of the imps in MAP18 (in the corridor area that is common
+		to both MAP31 and MAP18).
+		 - We declare an array indicating whether we have killed the equivalent imps in
+		THIS map
+		 - The global 'lookupDeadThings[]' is populated if and when we kill one or more
+		 corresponding imps in this map
+		*/
+		int thingsToKill[3] = {11,12,13};
+		bool aliveThings[3] = {1,1,1};
+
+		int count = 3;
+		bool exitLoop = 0;
+		while(true){
+			exitLoop = 1;
+			/*
+			check each imp is alive. If not, kill corresponding imp in MAP18:
+			ThingCount(T_NONE, 4)
+			*/
+			for(int a=0;a<count; a++){
+				if(!(ThingCount(T_NONE, thingsToKill[a]))){
+					log(s:"Adding kill flag to global for imp ", i:thingsToKill[a]);
+					//ACS_Execute(10,18,thingsToKill[a]);
+					lookupDeadThings[a]=thingsToKill[a];	//look these up in MAP18 start script...
+					/*
+					And indicate which alive thing is now dead...
+					*/
+					aliveThings[a]=0;
+				}
+			}
+
+			/*
+			see if there are still alive imps. If so,
+			continue.
+			*/
+			for(int b=0;b<count;b++){
+				if(aliveThings[b]){
+					exitLoop = false;
+				}
+			}
+
+			/*
+			Otherwise, exit the loop:
+			*/
+			if(exitLoop){
+				break;
+			}
+			delay(35); // check every second.
+		}
+		log(s:"All dead Dave.");
+	}
+}
+
+/* call lower floor/ceiling function (slow) */
+script 1 (int sectorID, int dist, int planesToMove){
+	log(s:"calling floorAndCeilingLowerByValue");
+	floorAndCeilingLowerByValue(sectorID, 16, dist,  planesToMove);
+}
+
+
+script 2 (int target,int source){
+	log(s:"triggering script 2");
+	/* loop while still alive */
+	if(CURRENTLEVEL == 17){
+		While(ThingCount(T_BARON, 101) > 0)
+			Delay(35);
+		log(s:"All barons killed! Time to go...");
+		//now separate the exit teleporters:
+		changeSectorHeight(1,4,32,SECTOR_MVFLOORANDCEILING);
+	}
+	
+	if(CURRENTLEVEL == 18){
+		/*
+		Triggered by walking over a linedef at the top of the pyramids. Each linedef cross passes an argument 0 to 11 (depending on which
+		pyramid) and this is then used as the index of the randomized target array 'randomIndexAssigned' set up in the ENTER script
+		*/
+		log(s:"TELEPORTING OUT: script 2: plat to lower:");
+		log(i:source);
+		_currentPlatformToLower = source;	//now we can use this on clicking the buttons!
+		Teleport(0,randomIndexAssigned[target],0);
+	}
+}
+
+
+script 3 (int tag)
+{
+	if(CURRENTLEVEL == 17){
+		/*
+		In the cases where there are multiple linedefs triggering a one-time action on a platform,
+		we need to suppress the call to the action special for that tag if we cross another of the
+		action lines:
+		note: bool is 'truthy' rather than a true boolean
+		Update:
+		Adapted to use answer in doomworld forum:
+		https://www.doomworld.com/forum/topic/114772-acs-dynamic-complex-object-to-track-multiple-actioned-tags/#elPostFeed
+		NOTE: This works only if sequential tags
+		Second answer accounts for this with a nested loop, so that is used instead
+		*/
+		int i;
+		for(i=0; i< NUMCAGES; ++i){
+			if(cagetags[i] == tag && cagetriggered[i] != 1){
+				log(s:"triggering " + cagetags[i]);
+				cagetriggered[i] = 1;
+				floor_lowerbyvalue(tag, 16, 56);
+			}
+		}
+	}
+	
+	if(CURRENTLEVEL == 18){
+		/****
+		EXIT LIGHT HANDLING:
+		--------------------
+		Handler script for each segment button. This in turn will switch the
+		exit lights on and increment the switched count. 0 to 11, used as index
+		for  setExitSegmentDone exitLights array.
+		When we get here we have already set the transient sector tag of our departure platform,
+		so we can use it in the floor lower call:
+		*/
+		log(s:"CLICKING TRIGGER\nLight Index:");
+		log(i:tag);
+		setExitSegmentDone(tag);
+
+		/* also set any area-specific things: */
+		switch(tag){
+			case 0:
+				log(s:"Spawn demons in the arenas...");
+				spawnStuff(0);	//use the arg to determine which area we are spawning into (if I use elsewhere)
+			break;
+
+			case 1:	//floating switch. Need to set the CONTROL SECTOR texture to switched:
+				SetLineTexture(1,SIDE_FRONT, TEXTURE_MIDDLE,"SW2MET2");
+			break;
+			case 2:
+				Door_Open(38,12,0);
+			break;
+		}
+		log(s:"Now we lower the platform. Platform tag:");
+		log(i:_currentPlatformToLower);
+		/* we have activated the switch - raise the departure platform by tag stored in _currentPlatformToLower */
+		Floor_RaiseByValue(_currentPlatformToLower, 12, 56);
+	}
+	
+}
+
+
+/* TEST teleport to fake floor */
+script 5 (void){
+	if(CURRENTLEVEL == 18){
+		Teleport(10,0,0);
+	}
+}
+
+
+/*
+handler for other triggered stuff per area:
+*/
+script 6 (int areaIndex){
+	if(CURRENTLEVEL == 18){
+		if(exitTasksCompleted[areaIndex]){	//1 is truthy
+			switch(areaIndex){
+				case 0:
+					/*
+					spawn a BoH as you go past the hall intersection
+					*/
+					Spawn("BaronOfHell",	-1408<<16,	-2176<<16,	144<<16,0,64);
+					Spawn("Fatso",			-864<<16,	-2496<<16,	144<<16,0,64);
+					Spawn("Hellknight",		-1856<<16,	-2144<<16,	144<<16,0,64);
+				break;
+			}
+		}
+	}
+}
+
+/*
+open exit door if all switches are triggered, otherwise - er -
+don't...
+
+ceiling_raisebyvalue(sectorID, speed, dist);
+floor_lowerbyvalue(sectorID, speed, dist);
+
+}
+
+
+*/
+script 7(void){
+	if(CURRENTLEVEL == 18){
+		/* iterate over sector ID array. I need an array length */
+		openExit = TRUE;
+		for (int a = 0;a < TELEPORT_ARRAY_LENGTH; a++){
+			/* test if any unpressed buttons: */
+			log(i:exitTasksCompleted[a]);
+			if(!(exitTasksCompleted[a])){
+				openExit = FALSE;
+				break;
+			}
+		}
+		log(s:"Exit open status: ",b:openExit);
+		if(openExit){
+			ceiling_raisebyvalue(83, 12, 8);
+			floor_lowerbyvalue(83, 12, 8);
+			TagWait(83);
+			ceiling_lowerbyvalue(83, 8, 16);
+			floor_raisebyvalue(83, 8, 16);
+			TagWait(83);
+			ceiling_raisebyvalue(83, 4, 64);
+			floor_lowerbyvalue(83, 4, 56);
+			/* suppress retriggering: */
+			ClearLineSpecial();
+			log(s:"Open exit");
+		}
+		else{
+			log(s:"need to find all switches");
+			ceiling_raisebyvalue(83, 12, 8);
+			floor_lowerbyvalue(83, 12, 8);
+			TagWait(83);
+			ceiling_lowerbyvalue(83, 48, 16);
+			floor_raisebyvalue(83, 48, 16);
+			TagWait(83);
+			ceiling_raisebyvalue(83, 12, 8);
+			floor_lowerbyvalue(83, 12, 8);
+		}
+	}
+}
+
+/* lower platform */
+script 8 (int tag,int dist){
+	log(s:"opening exit door");
+	Floor_LowerByValue(tag,12,dist*8);
+}
+
+function void alignSectorFloors(int sectorId,int offsetX, int offsetY){
+	/* align ceiling lights in small corridor: */
+	Sector_SetFloorPanning(sectorId,offsetX, 0, offsetY, 0);
+}
+
+function void alignSectorCeilings(int sectorId,int offsetX, int offsetY){
+	/* align ceiling lights in small corridor: */
+	Sector_SetCeilingPanning(sectorId,offsetX, 0, offsetY, 0);
+}
+
+/*
+called from MAP31:
+*/
+function void killSecretThings(void){
+	for(int a=0;a<3;a++){
+		log(s:"thing to destroy ", i:lookupDeadThings[a]);
+		if(lookupDeadThings[a]> 0){
+			Thing_Destroy(lookupDeadThings[a],0,0);
+		}
+
+	}
+}
+
+
+
+/*
+start localised wind sound at specified thing(s) tag:
+*/
+function void startWindSound(int thingID){
+	PlaySound ( thingID, "WINDHOWL", 0, 0.5, true, ATTN_NORM);
+}
+
+/*
+wrapper for sector floor/ceiling height changing:
+*/
+function void changeSectorHeight(int sectorID, int speed, int dist, int planesToMove){
+	switch(planesToMove){
+		case SECTOR_MVFLOOR:
+			log(s:"lowering floor");
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVCEILING:
+			log(s:"raising ceiling");
+			ceiling_raisebyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVFLOORANDCEILING:
+			log(s:"lowering floor and raising ceiling");
+			ceiling_raisebyvalue(sectorID, speed, dist);
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		default:
+			//do nothing
+	}
+}
+
+function void floorAndCeilingLowerByValue(int sectorID, int speed, int dist, int planesToMove){
+	switch(planesToMove){
+		case SECTOR_MVFLOOR:
+			log(s:"lowering floor");
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVCEILING:
+			log(s:"lowering ceiling");
+			ceiling_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		case SECTOR_MVFLOORANDCEILING:
+			log(s:"lowering floor and ceiling");
+			ceiling_lowerbyvalue(sectorID, speed, dist);
+			floor_lowerbyvalue(sectorID, speed, dist);
+		break;
+		
+		default:
+			//do nothing
+	}
+}
+
+/* rotation is clockwise in degrees */
+function void rotateTextures(int sectorId, int floorAngle, int ceilingAngle){
+	Sector_SetRotation(sectorId, floorAngle, ceilingAngle);
+}
+
+/*
+This randomizes the teleport hub targets, so each new playthrough has different teleport destinations linked to the pyramids. The
+assigned targets persist over saves though.
+Also need to mirror this randomization for the departur platforms as well.
+*/
+function void randomizeTeleportDestinations(void){
+	log(s:"calling randomize teleporters");
+	//int teleTargetSectors[12] = {1,2,37,4,5,6,7,8,9,10,11,12};
+	int assigned = 0;
+
+	/* iterate over sector ID array. I need an array length */
+	for (int a = 0;a < TELEPORT_ARRAY_LENGTH; a++){
+		int entryDone = 0;
+		while(!(entryDone)){
+			/* 	if it is not already in place, proceed to get it. So we need to get a RANDOM index of the input and put it at the CURRENT index of the output: */
+			int rnd = Random(0,11);
+
+			/* test if this random index has been used already: */
+			if(!(randomIndexAssigned[rnd])){
+				/* if it has not, assign it to the target sector randomized ordr array and exit the entryDone loop: */
+				randomIndexAssigned[rnd] = teleTargetSectors[a];
+				// randomTelePlatforms[rnd] = telePlatforms[a]; ?
+				entryDone = 1;
+			}
+		}
+ 	}
+}
+
+/*
+key these to the INDEX of the platform being done
+Triggered on actioning the switches in each segment.
+When all are done, the exit itself will lower/open
+Logic:
+ - each switch is S1
+ - each passes a unique index number
+ - on passing the index number, the exitTasksCompleted array is updated
+*/
+function void setExitSegmentDone(int exitLightIndex){
+	/* flag the array index as true. The switches are S1, so this is probably redundant:  */
+	exitTasksCompleted[exitLightIndex] = 1;
+
+	log(i:exitLightIndex);
+	log(i:exitLights[exitLightIndex]);
+
+
+	/* and now perform the action to set the activated light to max brightness: */
+	Light_ChangeToValue(exitLights[exitLightIndex],255);
+
+	/* finally, check whether ALL lights are on. If so,  open the exit... */
+	openExit = true;
+	int numFound = -1;	//start at -1 because zero-indexed.
+	for(int n=0; n<TELEPORT_ARRAY_LENGTH; n++){
+		if(!exitTasksCompleted[n] == 0){
+			openExit = false;
+			numFound++;
+		}
+	}
+	log(s:"Number of switches currently found:");
+	log(i:numFound);
+	print(s:switchFindMsg[numFound]);
+
+	if(openExit){
+		log(s:"Open exit...");
+	};
+}
+
+/*
+'areaNum' is an arbitrary integer identifying each main area. It is not a sector tag as such, just an index.
+Therefore, I can use it to key an array of spawn data (not sure whether this will work though).
+*/
+function void spawnStuff(int areaNum){
+	switch(areaNum){
+		case 0:
+			log(s:"Spawning for area 0");
+			int start[3] = {0, -3072, 144};
+			int dim[2] = {5,5};	//cols, rows
+
+			int counter = 7;
+			int x_pos = -1;
+			int y_pos = -1;
+			int y_start = 0;
+
+			//x
+			for(int a=0; a< dim[0]; a++){
+				x_pos = start[0] + (a*128);
+				log(s:"row:",i:a,s:"x-pos", i:x_pos);
+				//y
+				for(int b=0; b<dim[1]; b++){
+					y_pos = start[1] + (b*128);
+					log(s:"col: ", i:b, s:"y-pos: ",i:y_pos);
+					Spawn("DoomImp",		x_pos<<16,		y_pos<<16,	start[2]<<16,0,64);
+					Spawn("ShotgunGuy",		(x_pos+64)<<16,	y_pos<<16,	start[2]<<16,0,64);
+				}
+			}
+		break;
+
+
+		default:
+			log(s:"no action");
+	}
+}
+

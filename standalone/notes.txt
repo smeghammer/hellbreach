@@ -32,6 +32,7 @@ tags		tele thing	area
  - blue skull - remove keyflag from door at baron canyon
  - also, pit is inescapable if fall in wrong side!!
 
+MAKE BLOOD GLOW!!!!!!!
 
 TAGS:
 -----

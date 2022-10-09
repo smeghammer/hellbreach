@@ -1,0 +1,8 @@
+#include "zcommon.acs"
+
+script 1 OPEN
+{
+	log(s:"fade test");
+    sector_SetFade (1, 255, 255, 255);
+	sector_SetFade (2, 255, 0, 0);
+}

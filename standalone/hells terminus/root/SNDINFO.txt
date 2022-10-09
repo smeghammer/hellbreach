@@ -1,0 +1,86 @@
+; MAP MUSIC:
+// BBLUES		BBLUES.mid
+
+
+glass/break   DSGLASS
+$limit    glass/break 0
+$pitchshift    glass/break 3
+$rolloff    glass/break 1000 2000
+
+fem/sight FEMZSIT
+fem/pain FEMZPAIN
+fem/death FEMZDHT
+fem/active FEMZACT
+KnifeHit DSKNIFE
+
+//FlamerZombie
+weapons/scorch                Sounds/FlamerZombie/dsscorch
+weapons/onfire                Sounds/FlamerZombie/dsonfire
+weapons/flamer                Sounds/FlamerZombie/dsflamer
+
+//BeamZombie
+BeamGuy/Attack					Sounds/BeamZombie/DSBEAMAT
+BeamGuy/Hit						Sounds/BeamZombie/DSBEAMHT
+
+$limit BeamGuy/Hit 0
+
+//cyberimp
+$RANDOM CIMPSIT { Sounds/CyberImp/CIMPSIT1 Sounds/CyberImp/CIMPSIT2 }
+CIMPSIT1	Sounds/CyberImp/CIMPCIT1
+CIMPSIT2	Sounds/CyberImp/CIMPSIT2
+$RANDOM CIMPDTH { Sounds/CyberImp/CIMPDTH1 Sounds/CyberImp/CIMPDTH2 }
+CIMPDTH1	Sounds/CyberImp/CIMPDTH1
+CIMPDTH2	Sounds/CyberImp/CIMPDTH2
+CIMPPAIN	Sounds/CyberImp/CIMPPAIN
+CIMPACT		Sounds/CyberImp/CIMPACT
+
+
+//RailArachno
+baby/chargerailgun	DSRGCHRG
+
+//CyberBaron
+cbaron/sight	cbarnsit
+cbaron/pain	cbarnpai
+cbaron/death	cbarndth
+cbaron/active	cbarnact
+cbaron/metal	cmetal
+
+//CyberBaron
+superbaron/scream dssbsit
+superbaron/pain dssbpain
+superbaron/death dssbdth
+superbaron/act dssbact
+
+//Fire
+environment/			Sounds/Flames/
+
+SFX/FireStart	Sounds/Flames/FIRESTRT
+SFX/FireLoop1	Sounds/Flames/FIRELOP1
+SFX/FireLoop2	Sounds/Flames/FIRELOP2
+SFX/FireLoop3	Sounds/Flames/FIRELOP3
+SFX/FireDie	Sounds/Flames/FIREDIE
+
+$Limit SFX/FireStart	0
+$Limit SFX/FireLoop	0
+$Limit SFX/FireDie	0
+
+//squire
+squire/sight DSSQRSIT
+squire/death DSSQRDTH
+
+fireball/fire dsfirmfi
+fireball/hit dsfirex3
+
+//Steam
+Steam/Loop	STEMLOOP
+Steam/Fire	STEMFIRE
+
+//BloodSkull
+BSkull/See		BSKULSEE
+BSkull/Pain		BSKULPIN
+BSkull/Death	BSKULEXP
+Blood/Spit		BLDSPIT
+$limit Blood/Spit 0
+Blood/Impact	BLDIMPAC
+$limit Blood/Impact 0
+
