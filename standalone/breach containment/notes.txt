@@ -71,3 +71,8 @@ prickle in pathway!					OK
 exit doortrak!!						OK
 make exit darker					ok
 stuck pain elemental
+
+add switch for main breach door to be opened after xxx
+add cover in the inner hall once key collected!
+if you get into the second part, must be able to return through 1st corridor door.
+
